@@ -345,3 +345,22 @@ select:focus { outline: 2px solid color-mix(in srgb, var(--accent) 30%, transpar
 
 .chat-spin { width: 18px; height: 18px; border: 2px solid #e5e7eb; border-top-color: var(--accent); border-radius: 999px; animation: spin .9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg) } }
+
+/* ---- Plan your visit — elevated minimal checklist ---- */
+.plan-wrap { display: grid; gap: 1.25rem; }
+.plan-head p { margin: 0; }
+.plan-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; align-items: start; }
+@media (max-width: 800px) { .plan-grid { grid-template-columns: 1fr; } }
+
+.plan-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.05); }
+.plan-card-head { display: flex; align-items: center; gap: .6rem; padding-bottom: .25rem; margin-bottom: .25rem; border-bottom: 1px dashed color-mix(in srgb, var(--text) 10%, transparent); }
+.plan-card h3 { font-size: var(--step-1); margin: 0; letter-spacing: -.01em; }
+.dot { width: .6rem; height: .6rem; border-radius: 999px; display: inline-block; }
+.dot-teal { background: #0ea5a3; box-shadow: 0 0 0 4px rgba(14,165,163,.12); }
+.dot-blue { background: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+
+.steps { counter-reset: step; list-style: none; padding: 0; display: grid; gap: .5rem; margin: .4rem 0 0 0; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: auto 1fr; gap: .75rem; align-items: center; padding: .65rem .7rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .02em; color: var(--accent-ink); width: 2.1rem; height: 2.1rem; display: grid; place-items: center; background: #f1fdfc; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 999px; }
+.steps li + li { margin-top: 0; }
+.steps li:hover { background: #f9fafb; }

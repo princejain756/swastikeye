@@ -105,23 +105,39 @@ function About() {
 function PlanVisit() {
   return (
     <section id="plan" className="section subtle">
-      <div className="container">
-        <h2>Plan your visit</h2>
-        <div className="grid two">
-          <ol className="list numbered">
-            <li>Book your annual eye examination in advance.</li>
-            <li>Bring previous records, prescriptions, and glasses.</li>
-            <li>If you use contact lenses, avoid wearing them 24 hours prior.</li>
-            <li>If diabetic, confirm medication adjustments with your physician.</li>
-            <li>For children, ensure they’ve eaten; exams may take time.</li>
-          </ol>
-          <ol className="list numbered">
-            <li>Expect a confirmation call a day prior to surgery.</li>
-            <li>Have an adult accompany you to and from the procedure.</li>
-            <li>Take your routine morning medications unless advised otherwise.</li>
-            <li>If on blood thinners, consult your physician about dosage.</li>
-            <li>Avoid public transport post-procedure; arrange safe transport.</li>
-          </ol>
+      <div className="container plan-wrap" aria-labelledby="plan-title">
+        <div className="plan-head">
+          <h2 id="plan-title">Plan your visit</h2>
+          <p className="muted">A crisp checklist so everything goes smoothly.</p>
+        </div>
+        <div className="plan-grid">
+          <div className="plan-card" aria-label="Before your appointment">
+            <div className="plan-card-head">
+              <span className="dot dot-teal" aria-hidden></span>
+              <h3>Before your appointment</h3>
+            </div>
+            <ol className="steps">
+              <li>Book your annual eye examination in advance.</li>
+              <li>Bring previous records, prescriptions, and glasses.</li>
+              <li>If you use contact lenses, avoid wearing them 24 hours prior.</li>
+              <li>If diabetic, confirm medication adjustments with your physician.</li>
+              <li>For children, ensure they’ve eaten; exams may take time.</li>
+            </ol>
+          </div>
+
+          <div className="plan-card" aria-label="On the day of visit">
+            <div className="plan-card-head">
+              <span className="dot dot-blue" aria-hidden></span>
+              <h3>On the day</h3>
+            </div>
+            <ol className="steps">
+              <li>Expect a confirmation call a day prior to surgery.</li>
+              <li>Have an adult accompany you to and from the procedure.</li>
+              <li>Take your routine morning medications unless advised otherwise.</li>
+              <li>If on blood thinners, consult your physician about dosage.</li>
+              <li>Avoid public transport post‑procedure; arrange safe transport.</li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
