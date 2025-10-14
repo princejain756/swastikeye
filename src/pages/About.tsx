@@ -1,5 +1,6 @@
 import { Seo } from '../Seo'
 import aboutHero from '../../images/adult-female-doctor-ophthalmologist.png'
+import nabhLogo from '../../images/NABH-Logo.png'
 
 export default function About() {
   return (
@@ -34,7 +35,44 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* NABH statement + Vision & Mission */}
+      <section className="section">
+        <div className="container cols">
+          <div>
+            <p className="eyebrow">Statement</p>
+            <h2>Vision and mission statement</h2>
+            <p>
+              We are a certified SHCO ( Small Health Care Organization) by NABH (National
+              Accreditation Board for Hospitals and health care providers)..
+            </p>
+
+            <div className="grid two" style={{ marginTop: '1.25rem' }}>
+              <div>
+                <p className="eyebrow">Vision</p>
+                <p>
+                  To achieve excellence in eye care and be a trusted partner in protecting and
+                  improving visual health
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow">Mission</p>
+                <p>
+                  Enhance quality of life of our patients through Dedicated, Patient-centric
+                  Compassionate Eye care, enriched by education, science and technology.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="card" style={{ display: 'grid', placeItems: 'center' }}>
+            <img
+              src={nabhLogo}
+              alt="NABH Certified (Entry Level) — Patient Safety and Quality of Care"
+              style={{ width: '100%', maxWidth: 360, height: 'auto' }}
+            />
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
-

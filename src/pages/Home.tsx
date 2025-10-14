@@ -1,6 +1,8 @@
 import { Seo } from '../Seo'
 import heroImg from '../../images/eyesimageforrepresentingthatitisaeyehospital.webp'
 import { EyeIcon, SunglassesIcon, TrendUpIcon, TargetIcon, ArrowRightIcon } from '../components/icons'
+import { reviews as allReviews, averageRating } from '../data/reviews'
+import { useMemo, useState } from 'react'
 
 const TITLE = 'Swastik Eye Hospital - Top Eye Specialists in Bangalore'
 const DESCRIPTION = 'Swastik Eye Hospital in Bangalore offers expert eye care. Trust our top specialists for all your vision needs. Book your appointment today!'
@@ -144,6 +146,83 @@ function PlanVisit() {
   )
 }
 
+function Stars({ value = 5 }: { value?: number }) {
+  const full = Math.round(value)
+  return (
+    <div aria-label={`${value} out of 5 stars`} className="stars" title={`${value} / 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} className={i < full ? 'on' : ''}>★</span>
+      ))}
+    </div>
+  )
+}
+
+function Reviews() {
+  const reviews = allReviews
+  const GOOGLE_LOGO = 'https://img.icons8.com/?size=100&id=17949&format=png&color=000000'
+  const [paused, setPaused] = useState(false)
+  const Cards = useMemo(() => (
+    reviews.map((r, i) => {
+      const t = (r.text || '').trim()
+      return (
+        <figure className="review-card" key={i}>
+          {t && <blockquote>“{t}”</blockquote>}
+          <figcaption>
+            <strong>{r.name}</strong>
+            <Stars value={r.stars} />
+            {r.date && <span className="muted small">{r.date}</span>}
+          </figcaption>
+        </figure>
+      )
+    })
+  ), [reviews])
+  return (
+    <section id="reviews" className="section subtle">
+      <div className="container">
+        <div className="reviews-head">
+          <div className="left">
+            <img src={GOOGLE_LOGO} alt="Google" className="gmark" />
+            <div>
+              <h2>What patients say</h2>
+              <p className="muted">Real reviews from Google</p>
+            </div>
+          </div>
+          <div className="right">
+            <Stars value={averageRating} />
+            <div className="muted small">Avg. rating {averageRating} / 5</div>
+          </div>
+        </div>
+
+        <div
+          className={`reviews-marquee ${paused ? 'paused' : ''}`}
+          aria-label="Patient reviews carousel"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+          onTouchCancel={() => setPaused(false)}
+        >
+          <div className="track">
+            <div className="group">{Cards}</div>
+            <div className="group" aria-hidden>{Cards}</div>
+          </div>
+        </div>
+
+        <div className="reviews-cta">
+          <a
+            className="button primary"
+            href="https://www.google.com/search?client=safari&sca_esv=e43c86de5287e939&rls=en&sxsrf=AE3TifPyll8xccYn61TKQb1bKfEUzmx_Lg:1760481273254&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E1WfENbvc3q4mZMzZAYgxS2Br5mwRloUIvdsXQCZ9FBm6a8JPS4TCtC6CLO225bVby5FnlL3GuWqZPWcvJM2dwTL4rNZBiYM0_mFh4a_KmoMwYSlVA%3D%3D&q=Swastik+Eye+Hospital+Reviews&sa=X&ved=2ahUKEwiJirTn36SQAxUQUGcHHRpnHDEQ0bkNegQIJRAE&biw=1551&bih=1084&dpr=2#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Post your review on Google
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <>
@@ -154,6 +233,7 @@ export default function Home() {
       />
       <Hero />
       <About />
+      <Reviews />
       <PlanVisit />
     </>
   )
